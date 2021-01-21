@@ -1,6 +1,9 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link, Switch, Route } from "react-router-dom";
 import { useHistory } from "react-router";
+import Login from '../Login';  
+import Reg from '../Registration';
+import Dashboard from "../Dashboard";
 
 import { Button } from "@progress/kendo-react-buttons";
 import { Drawer, DrawerContent } from "@progress/kendo-react-layout";
@@ -14,7 +17,7 @@ const user = {
 
 const items = [
   { text: "Home", icon: "k-i-home", route: "/", children: null },
-  { text: "Tech Fund", icon: "k-i-dollar", route: "/tech-fund", children: null }
+  { text: "Test Fund", icon: "k-i-dollar", route: "/tech-fund", children: null }
 ];
 
 const DrawerRouterContainer = (props: React.PropsWithChildren<any>) => {
@@ -59,8 +62,22 @@ const DrawerRouterContainer = (props: React.PropsWithChildren<any>) => {
                   <span className="fund">{items[selectedId].text}</span>
                 </span>
               </span>
+              <li className="nav-item">    
+             
+                <Link to={'/Login'} className="nav-link">Login</Link>    
+              </li>    
+              <li className="nav-item">    
+                <Link to={'/Signup'} className="nav-link">Sign Up</Link>    
+              </li>
               <img alt={user.name} src={user.img} />
             </h1>
+            <Switch>    
+          <Route exact path='/Login' component={Login} />    
+          <Route path='/Signup' component={Reg} />    
+        </Switch>    
+        <Switch>  
+        <Route path='/Dashboard' component={Dashboard} />    
+        </Switch>
           </div>
           {props.children}
         </DrawerContent>
